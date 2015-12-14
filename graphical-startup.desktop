@@ -1,0 +1,5 @@
+[Desktop Entry]
+Name=Graphical startup tasks
+Exec=/boot/setup/graphical-startup.sh
+Terminal=false
+Type=Application

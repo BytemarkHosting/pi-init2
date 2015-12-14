@@ -1,0 +1,20 @@
+#!/bin/sh
+#
+# Overwrite existing empty rc.local
+
+# Change config to start X & log in (copied from raspi-config)
+#
+systemctl set-default graphical.target
+ln -fs /etc/systemd/system/autologin@.serve /etc/systemd/system/getty.target.wants/getty@tty1.service
+sed /etc/lightdm/lightdm.conf -i -e \
+  "s/^#autologin-user=.*/autologin-user=pi/"
+
+# Install a package or two that we need
+#
+apt-get install xautomation
+
+# Add autostart entry to desktop
+#
+su pi -c 'mkdir -p ~/.config/autostart && cp /boot/setup/start.desktop ~/.config/autostart/'
+
+exit 0

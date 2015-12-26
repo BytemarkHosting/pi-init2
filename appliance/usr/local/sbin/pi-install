@@ -1,0 +1,41 @@
+#!/bin/bash
+
+# Debian packages to install
+#
+PACKAGES="
+  xautomation
+"
+
+# Remove this file if you want to re-run the setup
+#
+if [ -f /boot/pi-install.done ] ; then
+	exit 0
+fi
+
+
+# I can't get network-online.target to work :-/
+for check in {1..100}
+do
+  ip route get 80.68.80.24 >/dev/null 2>&1 && break
+  sleep 1
+done
+# fail noisily
+ip route get 80.68.80.24 >/dev/null || exit 3
+
+# Install a package or two that we need
+#
+export DEBIAN_FRONTEND=noninteractive
+apt-get -q update
+apt-get -q -y install $PACKAGES
+
+# Change config to start X & log in (copied from raspi-config)
+#
+ln -fs /etc/systemd/system/autologin@.serve /etc/systemd/system/getty.target.wants/getty@tty1.service
+sed /etc/lightdm/lightdm.conf -i -e \
+  "s/^#autologin-user=.*/autologin-user=pi/"
+
+systemctl set-default graphical.target
+
+touch /boot/pi-install.done
+
+exit 0

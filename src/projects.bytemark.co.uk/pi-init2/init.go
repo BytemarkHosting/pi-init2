@@ -20,6 +20,7 @@ package main
 
 import "os"
 import "fmt"
+import "path/filepath"
 import "golang.org/x/sys/unix"
 import "syscall" // for Exec only
 
@@ -42,13 +43,41 @@ func checkFatal(desc string, err error) {
 	checkFatalAllowed(desc, err, []syscall.Errno{})
 }
 
+func copyAppliance(path string, info os.FileInfo, err error) error {
+	info, err = os.Stat(path)
+	if err != nil {
+		// should only be called with real directories
+		return err
+	}
+
+	// for now we don't care about permissions
+
+	if (info.IsDir()) {
+		if (os.Mkdir("/" + path, os.FileMode(int(0755))) != nil) {
+			return err
+		}
+	} else {
+		// remove any existing file in place, ignore error, but let's
+		// not use RemoveAll to delete directories, not sure anything
+		// useful can come of that
+		os.Remove("/" + path)
+
+		if (os.Symlink("/boot/appliance/"+path, "/"+path) != nil) {
+			return err
+		}
+
+		fmt.Println("Symlinked "+path+" to /boot/appliance")
+	}
+
+	return nil
+}
+
 func main() {
 
 	exists := []syscall.Errno{syscall.EEXIST};
-	noent  := []syscall.Errno{syscall.ENOENT};
 
 	checkFatal("changing directory", 
-		unix.Chdir("/setup"))
+		unix.Chdir("/"))
 	checkFatal("remount rw", 
 		unix.Mount("/","/","vfat", syscall.MS_REMOUNT, ""), )
 	checkFatalAllowed(
@@ -65,11 +94,17 @@ func main() {
 		unix.Mount("tmp/mmcblk0p2", "new_root", "ext4", 0, ""))
 	checkFatal("pivoting", 
 		unix.PivotRoot("new_root", "new_root/boot"))
-	checkFatal("changing to /boot", 
-		unix.Chdir("/boot"))
-	checkFatal("unmounting tmp", 
-		unix.Unmount("setup/tmp", 0))
-	checkFatalAllowed(
+	checkFatal("unmounting /boot/tmp", 
+		unix.Unmount("/boot/tmp", 0))
+	checkFatal("Removing /boot/tmp", 
+		os.Remove("/boot/new_root"))
+	checkFatal("Removing /boot/new_root", 
+		os.Remove("/boot/tmp"))
+	checkFatal("changing into appliance directory",
+		unix.Chdir("/boot/appliance"))
+	checkFatal("copying appliance to root",
+		filepath.Walk(".", copyAppliance))
+	/*checkFatalAllowed(
 		"remove wpa_supplicant.conf",
 		unix.Unlink("/etc/wpa_supplicant/wpa_supplicant.conf"), noent)
 	checkFatalAllowed(
@@ -80,7 +115,7 @@ func main() {
 			"/boot/setup/wpa_supplicant.conf", 
 			"/etc/wpa_supplicant/wpa_supplicant.conf"))
 	checkFatal("symlink rc.local", 
-		unix.Symlink("/boot/setup/rc.local", "/etc/rc.local"))
+		unix.Symlink("/boot/setup/rc.local", "/etc/rc.local"))*/
 
 	// use deprecated API because Exec has been removed from rebuild syscall
 	// stuff :-O  Hopefully we will get a hook in Raspbian before this becomes

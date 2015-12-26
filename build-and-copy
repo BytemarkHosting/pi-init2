@@ -1,0 +1,16 @@
+#!/bin/sh
+#
+# Simple build script that builds & copies pi-init2, as well as "appliance"
+# files onto Raspberry Pi.
+#
+# Works for me on an Ubuntu system where a Raspberry Pi appears under
+# /media/mattbee/boot but you may need to adjust.
+
+export GOPATH=`pwd` 
+export GOOS=linux
+export GOARCH=arm
+
+go build -o pi-init2 projects.bytemark.co.uk/pi-init2 && \
+  cp -a cmdline.txt pi-init2 appliance /media/$USER/boot && \
+  umount /media/$USER/boot
+

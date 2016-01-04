@@ -6,11 +6,14 @@
 # Works for me on an Ubuntu system where a Raspberry Pi appears under
 # /media/mattbee/boot but you may need to adjust.
 
-export GOPATH=`pwd` 
+export GOPATH=`pwd`
 export GOOS=linux
 export GOARCH=arm
 
+FILES="cmdline.txt pi-init2 appliance"
+
 go build -o pi-init2 projects.bytemark.co.uk/pi-init2 && \
-  cp -a cmdline.txt pi-init2 appliance /media/$USER/boot && \
+  zip -r release.zip $FILES && \
+  cp -a $FILES /media/$USER/boot && \
   umount /media/$USER/boot
 

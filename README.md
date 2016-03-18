@@ -23,7 +23,7 @@ The Raspberry Pi should now boot into a full screen web browser.  The first boot
 
 You can edit either of these files:
 
-* [appliance/etc/wpa_supplicant/wpa_supplicant.conf](appliance/home/pi/graphical-startup.sh) - for wireless network credentials, if you're using a wireless adapter.
+* [appliance/etc/wpa_supplicant/wpa_supplicant.conf](appliance/etc/wpa_supplicant/wpa_supplicant.conf) - for wireless network credentials, if you're using a wireless adapter.
 * [appliance/home/pi/graphical_startup.sh](appliance/home/pi/graphical_startup.sh) - to change the URL to load on startup.
 
 Building pi-init2

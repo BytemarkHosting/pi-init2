@@ -8,7 +8,8 @@
  * do.
  *
  * Cross-compile on Mac/Linux:
- *   GOOS=linux GOARCH=arm go build packages projects.bytemark.co.uk/pi-init2
+ *   GOOS=linux GOARCH=arm go get golang.org/x/sys/unix
+ *   GOOS=linux GOARCH=arm go build projects.bytemark.co.uk/pi-init2
  *
  * Cross-compile on Windows:
  *   set GOOS=linux

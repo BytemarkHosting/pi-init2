@@ -17,7 +17,7 @@ From your desktop / laptop:
 
 * Download and write a standard [Raspbian "jessie" SD card](https://www.raspberrypi.org/downloads/raspbian/)
 * Unzip the latest release into the /boot partition
-* Remove the SD card, and put it into your Pi.
+* Remove the SD card and put it into your Pi.
 
 The Raspberry Pi should now boot into a full screen web browser.  The first boot takes 2-5 minutes depending on your network, and which model of Raspberry Pi you use (I tested with models B+ and 2).
 

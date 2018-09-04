@@ -1,5 +1,0 @@
-[Desktop Entry]
-Name=Graphical startup tasks
-Exec=/home/pi/graphical-startup.sh
-Terminal=false
-Type=Application

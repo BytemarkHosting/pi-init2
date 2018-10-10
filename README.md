@@ -35,7 +35,7 @@ $git remote add origin https://github.com/stanfordroboticsclub/RPI-Setup.git
 $git fetch --all
 $git reset --hard origin/master
 ```
-
+ 
 Getting internet access
 -------------
 This script will make so the RPi automatically wants to connect the Stanford network. Initially it won't be able to do that as it is not yet authenticated to do it. To set that up:

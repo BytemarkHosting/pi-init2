@@ -56,7 +56,7 @@ fi
 
 # set variable identifying the filesystem you work in (used in the prompt below)
 set_bash_prompt(){
-	fs_mode=$(mount | sed -n -e "s/^\/dev\/.* on \/ .*(\(r[w|o]\).*/\1/p")
+	fs_mode=$(mount | grep mmcblk0p2 | grep -o 'rw' || echo ro)
 	PS1='\[\033[01;32m\]\u@\h${fs_mode:+($fs_mode)}\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 }
  

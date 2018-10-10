@@ -24,8 +24,17 @@ From your desktop / laptop:
 * Unzip the latest release of this repository into the /boot partition
 * Remove the SD card and put it into your Pi.
 
-The Raspberry Pi should now boot and set everything up for development
+The Raspberry Pi should now boot and set everything up for development. 
 
+If you want the chagnes you make to be under version control instead of unzipping you can do the following:
+
+```
+$cd /Volumes/boot
+$git init
+$git remote add origin https://github.com/stanfordroboticsclub/RPI-Setup.git
+$git fetch --all
+$git reset --hard origin/master
+```
 
 Getting internet access
 -------------

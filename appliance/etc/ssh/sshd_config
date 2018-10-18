@@ -1,0 +1,353 @@
+
+# This is the sshd server system-wide configuration file.  See
+# sshd_config(5) for more information.
+
+# This sshd was compiled with PATH=/usr/bin:/bin:/usr/sbin:/sbin
+
+# The strategy used for options in the default sshd_config shipped with
+# OpenSSH is to specify options with their default value where
+# possible, but leave them commented.  Uncommented options override the
+# default value.
+#       $OpenBSD: sshd_config,v 1.100 2016/08/15 12:32:04 naddy Exp $
+
+# This is the sshd server system-wide configuration file.  See
+# sshd_config(5) for more information.
+
+# This sshd was compiled with PATH=/usr/bin:/bin:/usr/sbin:/sbin
+
+# The strategy used for options in the default sshd_config shipped with
+# OpenSSH is to specify options with their default value where
+# possible, but leave them commented.  Uncommented options override the
+# default value.
+
+#Port 22
+#AddressFamily any
+#ListenAddress 0.0.0.0
+#ListenAddress ::
+
+#HostKey /etc/ssh/ssh_host_rsa_key
+#HostKey /etc/ssh/ssh_host_ecdsa_key
+#HostKey /etc/ssh/ssh_host_ed25519_key
+
+# Ciphers and keying
+#RekeyLimit default none
+
+# Logging
+#SyslogFacility AUTH
+#LogLevel INFO
+
+# Authentication:
+
+#LoginGraceTime 2m
+#PermitRootLogin prohibit-password
+#StrictModes yes
+#MaxAuthTries 6
+#MaxSessions 10
+
+#PubkeyAuthentication yes
+
+# Expect .ssh/authorized_keys2 to be disregarded by default in future.
+#AuthorizedKeysFile     .ssh/authorized_keys .ssh/authorized_keys2
+
+#AuthorizedPrincipalsFile none
+
+#AuthorizedKeysCommand none
+#AuthorizedKeysCommandUser nobody
+
+# For this to work you will also need host keys in /etc/ssh/ssh_known_hosts
+#HostbasedAuthentication no
+# Change to yes if you don't trust ~/.ssh/known_hosts for
+# HostbasedAuthentication
+#IgnoreUserKnownHosts no
+# Don't read the user's ~/.rhosts and ~/.shosts files
+#IgnoreRhosts yes
+
+# To disable tunneled clear text passwords, change to no here!
+#PasswordAuthentication yes
+#PermitEmptyPasswords no
+
+# Change to yes to enable challenge-response passwords (beware issues with
+# some PAM modules and threads)
+ChallengeResponseAuthentication no
+
+# Kerberos options
+#KerberosAuthentication no
+#KerberosOrLocalPasswd yes
+#KerberosTicketCleanup yes
+#KerberosGetAFSToken no
+
+# GSSAPI options
+#GSSAPIAuthentication no
+#GSSAPICleanupCredentials yes
+#GSSAPIStrictAcceptorCheck yes
+#GSSAPIKeyExchange no
+
+# Set this to 'yes' to enable PAM authentication, account processing,
+# and session processing. If this is enabled, PAM authentication will
+# be allowed through the ChallengeResponseAuthentication and
+# PasswordAuthentication.  Depending on your PAM configuration,
+# PAM authentication via ChallengeResponseAuthentication may bypass
+# the setting of "PermitRootLogin without-password".
+# If you just want the PAM account and session checks to run without
+# PAM authentication, then enable this but set PasswordAuthentication
+# and ChallengeResponseAuthentication to 'no'.
+UsePAM yes
+
+#AllowAgentForwarding yes
+#AllowTcpForwarding yes
+#GatewayPorts no
+X11Forwarding yes
+#X11DisplayOffset 10
+#X11UseLocalhost yes
+#PermitTTY yes
+PrintMotd no
+#PrintLastLog yes
+#TCPKeepAlive yes
+#UseLogin no
+UsePrivilegeSeparation no
+#PermitUserEnvironment no
+#Compression delayed
+#ClientAliveInterval 0
+#ClientAliveCountMax 3
+#UseDNS no
+#PidFile /var/run/sshd.pid
+#MaxStartups 10:30:100
+#PermitTunnel no
+#ChrootDirectory none
+#VersionAddendum none
+
+# no default banner path
+#Banner none
+
+# Allow client to pass locale environment variables
+AcceptEnv LANG LC_*
+
+# override default of no subsystems
+Subsystem       sftp    /usr/lib/openssh/sftp-server
+
+# Example of overriding settings on a per-user basis
+#Match User anoncvs
+#       X11Forwarding no
+#       AllowTcpForwarding no
+#       PermitTTY no
+#       ForceCommand cvs server
+
+ListenAddress 10.0.0.1
+ListenAddress 10.0.0.2
+ListenAddress 10.0.0.3
+ListenAddress 10.0.0.4
+ListenAddress 10.0.0.5
+ListenAddress 10.0.0.6
+ListenAddress 10.0.0.7
+ListenAddress 10.0.0.8
+ListenAddress 10.0.0.9
+
+ListenAddress 10.0.0.10
+ListenAddress 10.0.0.11
+ListenAddress 10.0.0.12
+ListenAddress 10.0.0.13
+ListenAddress 10.0.0.14
+ListenAddress 10.0.0.15
+ListenAddress 10.0.0.16
+ListenAddress 10.0.0.17
+ListenAddress 10.0.0.18
+ListenAddress 10.0.0.19
+
+ListenAddress 10.0.0.20
+ListenAddress 10.0.0.21
+ListenAddress 10.0.0.22
+ListenAddress 10.0.0.23
+ListenAddress 10.0.0.24
+ListenAddress 10.0.0.25
+ListenAddress 10.0.0.26
+ListenAddress 10.0.0.27
+ListenAddress 10.0.0.28
+ListenAddress 10.0.0.29
+
+ListenAddress 10.0.0.30
+ListenAddress 10.0.0.31
+ListenAddress 10.0.0.32
+ListenAddress 10.0.0.33
+ListenAddress 10.0.0.34
+ListenAddress 10.0.0.35
+ListenAddress 10.0.0.36
+ListenAddress 10.0.0.37
+ListenAddress 10.0.0.38
+ListenAddress 10.0.0.39
+
+ListenAddress 10.0.0.40
+ListenAddress 10.0.0.41
+ListenAddress 10.0.0.42
+ListenAddress 10.0.0.43
+ListenAddress 10.0.0.44
+ListenAddress 10.0.0.45
+ListenAddress 10.0.0.46
+ListenAddress 10.0.0.47
+ListenAddress 10.0.0.48
+ListenAddress 10.0.0.49
+
+ListenAddress 10.0.0.50
+ListenAddress 10.0.0.51
+ListenAddress 10.0.0.52
+ListenAddress 10.0.0.53
+ListenAddress 10.0.0.54
+ListenAddress 10.0.0.55
+ListenAddress 10.0.0.56
+ListenAddress 10.0.0.57
+ListenAddress 10.0.0.58
+ListenAddress 10.0.0.59
+
+ListenAddress 10.0.0.60
+ListenAddress 10.0.0.61
+ListenAddress 10.0.0.62
+ListenAddress 10.0.0.63
+ListenAddress 10.0.0.64
+ListenAddress 10.0.0.65
+ListenAddress 10.0.0.66
+ListenAddress 10.0.0.67
+ListenAddress 10.0.0.68
+ListenAddress 10.0.0.69
+
+ListenAddress 10.0.0.70
+ListenAddress 10.0.0.71
+ListenAddress 10.0.0.72
+ListenAddress 10.0.0.73
+ListenAddress 10.0.0.74
+ListenAddress 10.0.0.75
+ListenAddress 10.0.0.76
+ListenAddress 10.0.0.77
+ListenAddress 10.0.0.78
+ListenAddress 10.0.0.79
+
+ListenAddress 10.0.0.80
+ListenAddress 10.0.0.81
+ListenAddress 10.0.0.82
+ListenAddress 10.0.0.83
+ListenAddress 10.0.0.84
+ListenAddress 10.0.0.85
+ListenAddress 10.0.0.86
+ListenAddress 10.0.0.87
+ListenAddress 10.0.0.88
+ListenAddress 10.0.0.89
+
+ListenAddress 10.0.0.90
+ListenAddress 10.0.0.91
+ListenAddress 10.0.0.92
+ListenAddress 10.0.0.93
+ListenAddress 10.0.0.94
+ListenAddress 10.0.0.95
+ListenAddress 10.0.0.96
+ListenAddress 10.0.0.97
+ListenAddress 10.0.0.98
+ListenAddress 10.0.0.99
+
+
+ListenAddress 10.0.0.100
+ListenAddress 10.0.0.101
+ListenAddress 10.0.0.102
+ListenAddress 10.0.0.103
+ListenAddress 10.0.0.104
+ListenAddress 10.0.0.105
+ListenAddress 10.0.0.106
+ListenAddress 10.0.0.107
+ListenAddress 10.0.0.108
+ListenAddress 10.0.0.109
+
+ListenAddress 10.0.0.110
+ListenAddress 10.0.0.111
+ListenAddress 10.0.0.112
+ListenAddress 10.0.0.113
+ListenAddress 10.0.0.114
+ListenAddress 10.0.0.115
+ListenAddress 10.0.0.116
+ListenAddress 10.0.0.117
+ListenAddress 10.0.0.118
+ListenAddress 10.0.0.119
+
+ListenAddress 10.0.0.120
+ListenAddress 10.0.0.121
+ListenAddress 10.0.0.122
+ListenAddress 10.0.0.123
+ListenAddress 10.0.0.124
+ListenAddress 10.0.0.125
+ListenAddress 10.0.0.126
+ListenAddress 10.0.0.127
+ListenAddress 10.0.0.128
+ListenAddress 10.0.0.129
+
+ListenAddress 10.0.0.130
+ListenAddress 10.0.0.131
+ListenAddress 10.0.0.132
+ListenAddress 10.0.0.133
+ListenAddress 10.0.0.134
+ListenAddress 10.0.0.135
+ListenAddress 10.0.0.136
+ListenAddress 10.0.0.137
+ListenAddress 10.0.0.138
+ListenAddress 10.0.0.139
+
+ListenAddress 10.0.0.140
+ListenAddress 10.0.0.141
+ListenAddress 10.0.0.142
+ListenAddress 10.0.0.143
+ListenAddress 10.0.0.144
+ListenAddress 10.0.0.145
+ListenAddress 10.0.0.146
+ListenAddress 10.0.0.147
+ListenAddress 10.0.0.148
+ListenAddress 10.0.0.149
+
+ListenAddress 10.0.0.150
+ListenAddress 10.0.0.151
+ListenAddress 10.0.0.152
+ListenAddress 10.0.0.153
+ListenAddress 10.0.0.154
+ListenAddress 10.0.0.155
+ListenAddress 10.0.0.156
+ListenAddress 10.0.0.157
+ListenAddress 10.0.0.158
+ListenAddress 10.0.0.159
+
+ListenAddress 10.0.0.160
+ListenAddress 10.0.0.161
+ListenAddress 10.0.0.162
+ListenAddress 10.0.0.163
+ListenAddress 10.0.0.164
+ListenAddress 10.0.0.165
+ListenAddress 10.0.0.166
+ListenAddress 10.0.0.167
+ListenAddress 10.0.0.168
+ListenAddress 10.0.0.169
+
+ListenAddress 10.0.0.170
+ListenAddress 10.0.0.171
+ListenAddress 10.0.0.172
+ListenAddress 10.0.0.173
+ListenAddress 10.0.0.174
+ListenAddress 10.0.0.175
+ListenAddress 10.0.0.176
+ListenAddress 10.0.0.177
+ListenAddress 10.0.0.178
+ListenAddress 10.0.0.179
+
+ListenAddress 10.0.0.180
+ListenAddress 10.0.0.181
+ListenAddress 10.0.0.182
+ListenAddress 10.0.0.183
+ListenAddress 10.0.0.184
+ListenAddress 10.0.0.185
+ListenAddress 10.0.0.186
+ListenAddress 10.0.0.187
+ListenAddress 10.0.0.188
+ListenAddress 10.0.0.189
+
+ListenAddress 10.0.0.190
+ListenAddress 10.0.0.191
+ListenAddress 10.0.0.192
+ListenAddress 10.0.0.193
+ListenAddress 10.0.0.194
+ListenAddress 10.0.0.195
+ListenAddress 10.0.0.196
+ListenAddress 10.0.0.197
+ListenAddress 10.0.0.198
+ListenAddress 10.0.0.199

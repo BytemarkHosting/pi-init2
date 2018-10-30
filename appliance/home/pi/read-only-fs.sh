@@ -33,12 +33,12 @@ echo "this script. MAKE A BACKUP FIRST."
 echo
 echo "Run time ~5 minutes. Reboot required."
 echo
-echo -n "CONTINUE? [y/N] "
-read
-if [[ ! "$REPLY" =~ ^(yes|y|Y)$ ]]; then
-	echo "Canceled."
-	exit 0
-fi
+# echo -n "CONTINUE? [y/N] "
+# read
+# if [[ ! "$REPLY" =~ ^(yes|y|Y)$ ]]; then
+# 	echo "Canceled."
+# 	exit 0
+# fi
 
 # FEATURE PROMPTS ----------------------------------------------------------
 # Installation doesn't begin until after all user input is taken.
@@ -70,33 +70,33 @@ SYS_TYPES=(Pi\ 3\ /\ Pi\ Zero\ W All\ other\ models)
 WATCHDOG_MODULES=(bcm2835_wdog bcm2708_wdog)
 OPTION_NAMES=(NO YES)
 
-echo -n "Enable boot-time read/write jumper? [y/N] "
-read
-if [[ "$REPLY" =~ (yes|y|Y)$ ]]; then
-	INSTALL_RW_JUMPER=1
-	echo -n "GPIO pin for R/W jumper: "
-	read
-	RW_PIN=$REPLY
-fi
+# echo -n "Enable boot-time read/write jumper? [y/N] "
+# read
+# if [[ "$REPLY" =~ (yes|y|Y)$ ]]; then
+# 	INSTALL_RW_JUMPER=1
+# 	echo -n "GPIO pin for R/W jumper: "
+# 	read
+# 	RW_PIN=$REPLY
+# fi
 
-echo -n "Install GPIO-halt utility? [y/N] "
-read
-if [[ "$REPLY" =~ (yes|y|Y)$ ]]; then
-	INSTALL_HALT=1
-	echo -n "GPIO pin for halt button: "
-	read
-	HALT_PIN=$REPLY
-fi
+# echo -n "Install GPIO-halt utility? [y/N] "
+# read
+# if [[ "$REPLY" =~ (yes|y|Y)$ ]]; then
+# 	INSTALL_HALT=1
+# 	echo -n "GPIO pin for halt button: "
+# 	read
+# 	HALT_PIN=$REPLY
+# fi
 
-echo -n "Enable kernel panic watchdog? [y/N] "
-read
-if [[ "$REPLY" =~ (yes|y|Y)$ ]]; then
-	INSTALL_WATCHDOG=1
-	echo "Target system type:"
-	selectN "${SYS_TYPES[0]}" \
-		"${SYS_TYPES[1]}"
-	WD_TARGET=$?
-fi
+# echo -n "Enable kernel panic watchdog? [y/N] "
+# read
+# if [[ "$REPLY" =~ (yes|y|Y)$ ]]; then
+# 	INSTALL_WATCHDOG=1
+# 	echo "Target system type:"
+# 	selectN "${SYS_TYPES[0]}" \
+# 		"${SYS_TYPES[1]}"
+# 	WD_TARGET=$?
+# fi
 
 # VERIFY SELECTIONS BEFORE CONTINUING --------------------------------------
 
@@ -117,12 +117,12 @@ else
 	echo "Enable watchdog: NO"
 fi
 echo
-echo -n "CONTINUE? [y/N] "
-read
-if [[ ! "$REPLY" =~ ^(yes|y|Y)$ ]]; then
-	echo "Canceled."
-	exit 0
-fi
+# echo -n "CONTINUE? [y/N] "
+# read
+# if [[ ! "$REPLY" =~ ^(yes|y|Y)$ ]]; then
+# 	echo "Canceled."
+# 	exit 0
+# fi
 
 # START INSTALL ------------------------------------------------------------
 # All selections have been validated at this point...
@@ -302,12 +302,12 @@ echo "Done."
 echo
 echo "Settings take effect on next boot."
 echo
-echo -n "REBOOT NOW? [y/N] "
-read
-if [[ ! "$REPLY" =~ ^(yes|y|Y)$ ]]; then
-	echo "Exiting without reboot."
-	exit 0
-fi
+# echo -n "REBOOT NOW? [y/N] "
+# read
+# if [[ ! "$REPLY" =~ ^(yes|y|Y)$ ]]; then
+# 	echo "Exiting without reboot."
+# 	exit 0
+# fi
 echo "Reboot started..."
 reboot
 exit 0

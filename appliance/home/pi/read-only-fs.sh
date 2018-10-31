@@ -1,14 +1,4 @@
 #!/bin/bash
-### BEGIN INIT INFO
-# Provides:          read-only-fs.sh
-# Required-Start:    $all
-# Required-Stop:     $all
-# Default-Start:     2 3 4 5
-# Default-Stop:      0 1 6
-# Short-Description: Make file system read-only
-# Description:       Make file system on sd card read-only
-### END INIT INFO
-
 
 touch /home/pi/ALIVE
 

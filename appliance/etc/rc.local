@@ -17,8 +17,8 @@ if [ "$_IP" ]; then
   printf "My IP address is %s\n" "$_IP"
 fi
 
-if [ -f /home/pi/TODO_ro ]; then
-    sudo bash /home/pi/ read-only-fs.sh
+if [ -f /boot/TODO_ro ]; then
+    sudo bash /home/pi/read-only-fs.sh
 fi
 
 exit 0

@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# ensure script isn't being run by accident
+if [ ! -f /boot/TODO_ro ]; then
+    exit 0
+fi
+
 touch /home/pi/ALIVE
 
 # CREDIT TO THESE TUTORIALS:
@@ -310,6 +315,10 @@ echo
 # 	echo "Exiting without reboot."
 # 	exit 0
 # fi
+
+echo "Turning script off"
+rm /boot/TODO_ro
+
 echo "Reboot started..."
 reboot
 exit 0

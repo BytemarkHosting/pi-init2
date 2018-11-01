@@ -1,7 +1,10 @@
 #!/bin/bash
 
+sudo apt update
 sudo apt install -y git vim screen python3-pip python-pip
 
+yes | sudo pip3 install ipython
+yes | sudo pip install ipython
 
 #### ODRIVE
 yes | sudo pip3 install odrive

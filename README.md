@@ -13,20 +13,18 @@ This is done using [pi-init2](src/projects.bytemark.co.uk/pi-init2/init.go). You
 Additionaly pi-init2 various system files are symlinked back to the /boot, allowing you to reliably edit those "user-serviceable" files from the computer in future. 
 
 
-When you will be developing various subsystems that we would want to setup reliably you can fork this repository and make it automatically setup that subsystem's Pi
-
 
 Actually doing it
 -------------
 From your desktop / laptop:
 
-* Download and write a standard [Raspbian "jessie" SD card](https://www.raspberrypi.org/downloads/raspbian/)
+* Download and write a standard [Raspbian "jessie" SD card](https://www.raspberrypi.org/downloads/raspbian/). We recomend using [etcher](https://www.balena.io/etcher/) to flash the card
 * Unzip the latest release of this repository into the /boot partition
 * Remove the SD card and put it into your Pi.
 
 The Raspberry Pi should now boot and set everything up for development. 
 
-If you want the chagnes you make to be under version control instead of unzipping you can do the following:
+If you want the chagnes you make to be under version control instead of unzipping you can do the following (EDIT: DON'T DO THIS, it messes with file permissions and is a mess to clean up. Use the inculded install_packages.sh script)
 
 ```
 $cd /Volumes/boot
@@ -42,17 +40,17 @@ This script will make so the RPi automatically wants to connect the Stanford net
 
 - Use another device to navigate to [iprequest.stanford.edu](http://iprequest.stanford.edu) 
 - Log in using your Stanford credentials
-- Follow the on-screen instructions to add another device
-- As the wireless MAC address give the string which appear in ~/MAC.txt on the RPi
+- Follow the on-screen instructions to add another device (The Pi's MAC address appears as part of the welcome screen)
 
 
-What this repo does (WIP)
+What this repo does
 -------------
 - Enables ssh (only on ethernet)
-- Prepares to connect to Stanford WiFi (see above for details)
-- Instals tools needed for development
-- Removes some unnecessary packages
+- Sets the Pi to connect to the rover network (10.0.0.X) over ethernet)
+- TODO: Expands the SD card file system
 - Sets the file system up as read only
+- Prepares to connect to Stanford WiFi (see above for details)
+- Gives the script to instal tools and repos needed for development
 
 
 Building pi-init2

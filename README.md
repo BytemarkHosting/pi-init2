@@ -47,7 +47,7 @@ What this repo does
 -------------
 - Enables ssh (only on ethernet)
 - Sets the Pi to connect to the rover network (10.0.0.X) over ethernet)
-- TODO: Expands the SD card file system
+- Expands the SD card file system
 - Sets the file system up as read only
 - Prepares to connect to Stanford WiFi (see above for details)
 - Gives the script to instal tools and repos needed for development

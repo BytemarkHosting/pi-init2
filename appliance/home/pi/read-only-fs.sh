@@ -5,6 +5,9 @@ if [ ! -f /boot/TODO_ro ]; then
     exit 0
 fi
 
+# expand the file system as we won't be able to do it after making it ro
+raspi-config --expand-rootfs
+
 touch /home/pi/ALIVE
 
 # CREDIT TO THESE TUTORIALS:

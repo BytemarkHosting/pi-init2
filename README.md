@@ -45,7 +45,7 @@ From your desktop / laptop:
 
 The Raspberry Pi should now boot and set everything up for development. 
 
-If you want the chagnes you make to be under version control instead of unzipping you can do the following (EDIT: DON'T DO THIS, it messes with file permissions and is a mess to clean up. Use the inculded install_packages.sh script)
+If you want the changes you make to be under version control instead of unzipping you can do the following (EDIT: DON'T DO THIS, it messes with file permissions and is a mess to clean up. Use the inculded install_packages.sh script)
 
 ```
 $cd /Volumes/boot
@@ -61,8 +61,9 @@ This script will make so the RPi automatically wants to connect the Stanford net
 
 - Use another device to navigate to [iprequest.stanford.edu](http://iprequest.stanford.edu) 
 - Log in using your Stanford credentials
-- Follow the on-screen instructions to add another device (The Pi's MAC address appears as part of the welcome screen)
-
+- Follow the on-screen instructions to add another device. The Pi's MAC address appears as part of the Pi's welcome screen under the line that says "wireless Hardware MAC address". 
+   - **First page:** Device Type: Other, Operating System: Linux, Hardware Address: put Pi's MAC address
+   - **Second page:** Make and model: Other PC, Hardware Addresses Wired: delete what's there, Hardware Addresses Wireless: put Pi's MAC address
 
 What this repo does
 -------------

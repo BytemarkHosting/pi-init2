@@ -40,12 +40,12 @@ Actually doing it
 From your desktop / laptop:
 
 * Download and write a standard [Raspbian "jessie" SD card](https://www.raspberrypi.org/downloads/raspbian/). We recomend using [etcher](https://www.balena.io/etcher/) to flash the card
-* Unzip the latest release of this repository into the /boot partition
+* Download the latest release of this repository into the /boot partition. Unzip and move all the files into the /boot folder (replace any files that conflict so the repository's version overwrites the original version). Delete the zip file and now empty folder.
 * Remove the SD card and put it into your Pi.
 
 The Raspberry Pi should now boot and set everything up for development. 
 
-If you want the chagnes you make to be under version control instead of unzipping you can do the following (EDIT: DON'T DO THIS, it messes with file permissions and is a mess to clean up. Use the inculded install_packages.sh script)
+If you want the changes you make to be under version control instead of unzipping you can do the following (EDIT: DON'T DO THIS, it messes with file permissions and is a mess to clean up. Use the inculded install_packages.sh script)
 
 ```
 $cd /Volumes/boot
@@ -59,10 +59,21 @@ Getting internet access
 -------------
 This script will make so the RPi automatically wants to connect the Stanford network. Initially it won't be able to do that as it is not yet authenticated to do it. To set that up:
 
-- Use another device to navigate to [iprequest.stanford.edu](http://iprequest.stanford.edu) 
-- Log in using your Stanford credentials
-- Follow the on-screen instructions to add another device (The Pi's MAC address appears as part of the welcome screen)
+- Plug your Pi in to power (over the onboard micro USB port). Either plug a monitor and keyboard into the Pi or SSH into it using your laptop over Ethernet. Log in to the Pi. In the welcome message that comes after the login line, look for the Pi's **MAC address**, which will appear under the line that says "wireless Hardware MAC address". Note that address down.
+- Use another computer to navigate to [iprequest.stanford.edu](http://iprequest.stanford.edu).
+- Log in using your Stanford credentials.
+- Follow the on-screen instructions to add another device:
+   - **First page:** Device Type: Other, Operating System: Linux, Hardware Address: put Pi's MAC address
+   - **Second page:** Make and model: Other PC, Hardware Addresses Wired: delete what's there, Hardware Addresses Wireless: put Pi's MAC address
+- Confirm that the Pi is connected to the network:
+   - Wait for an email (to your Stanford email) that the device has been accepted
+   - `sudo reboot` on the Pi
+   - After it's done rebooting, type `ping www.google.com` and make sure you are receiving packets over the network
 
+Getting started with the Pi
+-------------
+- Type `rw` to enter read-write mode. Confirm that the terminal prompt ends with `(rw)` instead of `(ro)`
+- Run `sudo ./install_packages.sh` to install packages
 
 What this repo does
 -------------
@@ -71,7 +82,7 @@ What this repo does
 - Expands the SD card file system
 - Sets the file system up as read only
 - Prepares to connect to Stanford WiFi (see above for details)
-- Gives the script to instal tools and repos needed for development
+- Gives the script to install tools and repos needed for development
 
 
 Building pi-init2

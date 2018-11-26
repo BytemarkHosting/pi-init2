@@ -8,7 +8,6 @@ yes | sudo pip install ipython
 
 #### ODRIVE
 yes | sudo pip3 install odrive
-git config --global http.sslverify false
 git clone https://github.com/stanfordroboticsclub/UDP-ODrive.git
 
 

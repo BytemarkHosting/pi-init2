@@ -45,16 +45,6 @@ From your desktop / laptop:
 
 The Raspberry Pi should now boot and set everything up for development. 
 
-If you want the changes you make to be under version control instead of unzipping you can do the following (EDIT: DON'T DO THIS, it messes with file permissions and is a mess to clean up. Use the inculded install_packages.sh script)
-
-```
-$cd /Volumes/boot
-$git init
-$git remote add origin https://github.com/stanfordroboticsclub/RPI-Setup.git
-$git fetch --all
-$git reset --hard origin/master
-```
- 
 Getting internet access
 -------------
 This script will make so the RPi automatically wants to connect the Stanford network. Initially it won't be able to do that as it is not yet authenticated to do it. To set that up:
@@ -72,7 +62,16 @@ This script will make so the RPi automatically wants to connect the Stanford net
 
 Getting started with the Pi
 -------------
+- Configure your computer to access the Rover network:
+	- Go to your network settings for the interface you wish to use (ethernet/wifi)
+	- Change your Configure IPv4: Manually
+	- Change your IP Address: 10.0.0.X (see the [CS Comms System](https://docs.google.com/spreadsheets/d/1pqduUwYa1_sWiObJDrvCCz4Al3pl588ytE4u-Dwa6Pw/edit?usp=sharing) document for what X to use)
+	- Change your Subnet Mask: 255.255.255.0
+	- Leave the Router blank
+	- After disconnecting from the Rover network remeber to return those settings to what they orignially were, otherwise your internet on that interface won't work
+- Ssh into the pi using `ssh pi@10.0.0.10` from your computer
 - Type `rw` to enter read-write mode. Confirm that the terminal prompt ends with `(rw)` instead of `(ro)`
+- Use `sudo date -s "11/26/2018 03:38"` to update the current datetime (replace with current time). This is to prevent the Pi from thinking the certificates used to download the packages are from the future.
 - Run `sudo ./install_packages.sh` to install packages
 
 What this repo does

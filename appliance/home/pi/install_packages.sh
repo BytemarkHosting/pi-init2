@@ -1,5 +1,8 @@
 #!/bin/bash
 
+read -p 'Please enter the current datetime in YYYY-MM-DD HH:MM format: ' datetime
+sudo date -s "$datetime"
+
 sudo apt update
 sudo apt install -y git vim screen python3-pip python-pip
 

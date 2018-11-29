@@ -37,7 +37,7 @@ Actually doing it
 -------------
 From your desktop / laptop:
 
-* Download and write a standard [Raspbian "jessie" SD card](https://www.raspberrypi.org/downloads/raspbian/). We recomend using [etcher](https://www.balena.io/etcher/) to flash the card
+* Download and write a standard [Raspbian Stretch Lite](https://www.raspberrypi.org/downloads/raspbian/) SD card. We recomend using [etcher](https://www.balena.io/etcher/) to flash the card
 * Download the latest release of this repository into the /boot partition. Unzip and move all the files into the /boot folder (replace any files that conflict so the repository's version overwrites the original version). Delete the zip file and now empty folder.
 * Remove the SD card and put it into your Pi.
 

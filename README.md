@@ -19,7 +19,7 @@ Specifications:
 - Each module shall be downloadable with `git clone (address)`
 - Each module shall contain a `install.sh` script which will prepare the module to be used including installing any requirements and symlinking the service files to the correct places 
 - Each module shall be documeted using the `README.md` and the topics is publishes and subscribes to are listed on the [CS Comms System](https://docs.google.com/spreadsheets/d/1pqduUwYa1_sWiObJDrvCCz4Al3pl588ytE4u-Dwa6Pw/edit?usp=sharing) document
-- Each executable to be used on the rover shall have a `name.service` script associated with it. This allows them to be manipulated as a systemd service using the following commands:
+- Each executable to be used on the rover shall have a `name.service` script associated with it. Read the [intro to systemd](https://www.devdungeon.com/content/creating-systemd-service-files) and leanr more about writing [serive files](https://www.digitalocean.com/community/tutorials/understanding-systemd-units-and-unit-files#anatomy-of-a-unit-file) This allows them to be manipulated as a systemd service using the following commands:
 
 | Command | Descripion |
 |---------|------------|

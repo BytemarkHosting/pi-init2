@@ -8,8 +8,6 @@ fi
 # expand the file system as we won't be able to do it after making it ro
 raspi-config --expand-rootfs
 
-touch /home/pi/ALIVE
-
 # CREDIT TO THESE TUTORIALS:
 # petr.io/en/blog/2015/11/09/read-only-raspberry-pi-with-jessie
 # hallard.me/raspberry-pi-read-only

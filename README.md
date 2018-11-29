@@ -17,7 +17,7 @@ Specifications:
 
 - Each module shall be a single git repository
 - Each module shall be downloadable with `git clone (address)`
-- Each module shall contain a `install.sh` script which will prepare the module to be used including installing any requirements.
+- Each module shall contain a `install.sh` script which will prepare the module to be used including installing any requirements and symlinking the service files to the correct places 
 - Each module shall be documeted using the `README.md` and the topics is publishes and subscribes to are listed on the [CS Comms System](https://docs.google.com/spreadsheets/d/1pqduUwYa1_sWiObJDrvCCz4Al3pl588ytE4u-Dwa6Pw/edit?usp=sharing) document
 - Each executable to be used on the rover shall have a `name.service` script associated with it. This allows them to be manipulated as a systemd service using the following commands:
 
@@ -29,8 +29,6 @@ Specifications:
 |`sudo systemctl disable name` | stop the service from starting on boot|
 |`sudo systemctl enable name` | make the service start on boot|
 |`journalctl -u name` | display the output of the service |
-
-NB: its possible that before using those commands you might have to run `sudo systemctl enable $(pwd)/name.service` from the repo directory.
 
 For an example of module take a look at [RoverGPS](https://github.com/stanfordroboticsclub/RoverGPS)
 

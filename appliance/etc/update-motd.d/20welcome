@@ -1,7 +1,16 @@
 #!/bin/sh
 MAC=$(cat /sys/class/net/wlan0/address)
+
+if [ -f /boot/TODO_ro ]; then
+    echo
+    echo "Welcome to the Stanford Robotics Raspberry Pi distribution"
+    echo "The Pi is currently setting up the read-only file system"
+    echo "It should reboot shortly and be ready to use"
+    exit 0
+fi
+
 echo
-echo "Welcome to the Stanford Robotics Rapberry Pi distribution"
+echo "Welcome to the Stanford Robotics Raspberry Pi distribution"
 echo "The setup process is almost complete. You just need to register"
 echo "the Pi with Stanford network to give it internet access. Go to"
 echo "iprequest.stanford.edu and follow the onscreen instructions"
@@ -13,6 +22,10 @@ echo "Then reboot the Pi (sudo reboot) and run the following command"
 echo
 echo "sudo bash install_packages.sh"
 echo
-echo "Also be sure to change the Pi's IP address away from 10.0.0.10"
-echo "by editing /boot/appliance/etc/network/interfaces. Look at the"
-echo "CS Comm System document and pick an unused IP and update the doc"
+
+if [ $(ip route | grep eth0 | awk '{print $NF;exit}') == "10.0.0.10" ] 
+then
+    echo "Also be sure to change the Pi's IP address away from the default"
+    echo "10.0.0.10 by editing /boot/appliance/etc/network/interfaces."
+    echo "Pick an unused IP from the CS Comm System document and update the doc"
+fi

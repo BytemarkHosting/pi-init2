@@ -20,7 +20,7 @@ echo $MAC
 echo
 echo "Then reboot the Pi (sudo reboot) and run the following command"
 echo
-echo "sudo bash install_packages.sh"
+echo "bash install_packages.sh"
 echo
 echo "Also be sure to change the Pi's IP address away from the default"
 echo "10.0.0.10 by editing /boot/appliance/etc/network/interfaces."

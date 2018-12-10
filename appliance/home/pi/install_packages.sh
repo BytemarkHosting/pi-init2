@@ -7,7 +7,7 @@ fi
 
 if [ $(hostname) = "raspberrypi" ]; then
         read -p 'Current hostname: raspberrypi. Please change hostname to: ' new_hostname
-        [ ! -z "$new_hostname" ] && echo "$new_hostname" > sudo tee -a /etc/hostname
+        [ ! -z "$new_hostname" ] && echo "$new_hostname" | sudo tee -a /etc/hostname
         [ ! -z "$new_hostname" ] && sudo hostnamectl set-hostname "$new_hostname"
 fi
 read -p 'Enter the current date [YYYY-MM-DD HH:MM] or hit enter to skip: ' datetime

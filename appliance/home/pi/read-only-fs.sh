@@ -5,9 +5,6 @@ if [ ! -f /boot/TODO_ro ]; then
     exit 0
 fi
 
-# expand the file system as we won't be able to do it after making it ro
-raspi-config --expand-rootfs
-
 # CREDIT TO THESE TUTORIALS:
 # petr.io/en/blog/2015/11/09/read-only-raspberry-pi-with-jessie
 # hallard.me/raspberry-pi-read-only
@@ -20,6 +17,10 @@ if [ $(id -u) -ne 0 ]; then
 fi
 
 clear
+
+echo "Expanding file system"
+# expand the file system as we won't be able to do it after making it ro
+sudo raspi-config --expand-rootfs
 
 echo "This script configures a Raspberry Pi"
 echo "SD card to boot into read-only mode,"

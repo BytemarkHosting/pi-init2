@@ -19,8 +19,10 @@ fi
 clear
 
 echo "Expanding file system"
-# expand the file system as we won't be able to do it after making it ro
-sudo raspi-config --expand-rootfs
+# expands the root partition as we won't be able to do it after making it ro
+sudo parted /dev/mmcblk0 resizepart 2 100%
+# expands the file system
+sudo resize2fs /dev/mmcblk0p2
 
 echo "This script configures a Raspberry Pi"
 echo "SD card to boot into read-only mode,"
@@ -304,6 +306,10 @@ replace /etc/fstab "ext4\s*defaults,noatime\s" "ext4    defaults,noatime,ro "
 append1 /etc/fstab "/var/log" "tmpfs /var/log tmpfs nodev,nosuid 0 0"
 append1 /etc/fstab "/var/tmp" "tmpfs /var/tmp tmpfs nodev,nosuid 0 0"
 append1 /etc/fstab "\s/tmp"   "tmpfs /tmp    tmpfs nodev,nosuid 0 0"
+# change fstab to not use PARTUUIDs (as they change when we resized the partition)
+replace /etc/fstab "PARTUUID=[0-9a-f]{8}-01" "/dev/mmcblk0p1"
+replace /etc/fstab "PARTUUID=[0-9a-f]{8}-02" "/dev/mmcblk0p2"
+
 
 # PROMPT FOR REBOOT --------------------------------------------------------
 

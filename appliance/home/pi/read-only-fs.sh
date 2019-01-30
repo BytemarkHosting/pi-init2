@@ -326,6 +326,7 @@ echo
 
 echo "Turning script off"
 rm /boot/TODO_ro
+rm /home/pi/read-only-fs.sh
 
 echo "Reboot started..."
 reboot

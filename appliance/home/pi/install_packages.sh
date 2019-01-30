@@ -19,6 +19,7 @@ replace() {
 if grep -q "10.0.0.10" /boot/appliance/etc/network/interfaces; then
         read -p 'Current IP: 10.0.0.10 Please change IP to: 10.0.0.' new_ip
 	replace /boot/appliance/etc/network/interfaces "10.0.0.10" "10.0.0.$new_ip"
+	echo "Please update the CS System spreadsheet with this new IP"
 fi
 
 if [ $(hostname) = "raspberrypi" ]; then
@@ -26,6 +27,7 @@ if [ $(hostname) = "raspberrypi" ]; then
         [ ! -z "$new_hostname" ] && echo "$new_hostname" | sudo tee -a /etc/hostname
         [ ! -z "$new_hostname" ] && echo "127.0.1.1       $new_hostname" | sudo tee -a /etc/hosts
         [ ! -z "$new_hostname" ] && sudo hostnamectl set-hostname "$new_hostname"
+	echo "Please update the CS System spreadsheet with this new hostname"
 fi
 
 read -p 'Enter the current date [YYYY-MM-DD HH:MM] or hit enter to skip: ' datetime

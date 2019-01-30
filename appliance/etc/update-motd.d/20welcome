@@ -21,7 +21,3 @@ echo
 echo "Then reboot the Pi (sudo reboot) and run the following command"
 echo
 echo "bash install_packages.sh"
-echo
-echo "Also be sure to change the Pi's IP address away from the default"
-echo "10.0.0.10 by editing /boot/appliance/etc/network/interfaces."
-echo "Pick an unused IP from the CS Comm System document and update the doc"

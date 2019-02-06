@@ -69,8 +69,10 @@ Getting started with the Pi
 	- After disconnecting from the Rover network remeber to return those settings to what they orignially were, otherwise your internet on that interface won't work
 - Ssh into the pi using `ssh pi@10.0.0.10` from your computer
 - Type `rw` to enter read-write mode. Confirm that the terminal prompt ends with `(rw)` instead of `(ro)`
-- Use `sudo date -s "11/26/2018 03:38"` to update the current datetime (replace with current time). This is to prevent the Pi from thinking the certificates used to download the packages are from the future.
 - Run `sudo ./install_packages.sh` to install packages
+	- If the IP is still 10.0.0.10 you will be prompted to change it
+	- If the hostname is still raspberry you will be prompted to change it
+	- You will be asked to enter the current time and date. This is needed so that certificates don't get marked as expired
 
 What this repo does
 -------------

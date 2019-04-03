@@ -73,6 +73,7 @@ Getting started with the Pi
 	- If the IP is still 10.0.0.10 you will be prompted to change it
 	- If the hostname is still raspberry you will be prompted to change it
 	- You will be asked to enter the current time and date. This is needed so that certificates don't get marked as expired
+- Once you have done this you can ssh into the pi using the [rover command](https://github.com/stanfordroboticsclub/UDPComms). by typing `rover connect hostname`
 
 What this repo does
 -------------

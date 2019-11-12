@@ -37,7 +37,7 @@ Actually doing it
 -------------
 From your desktop / laptop:
 
-* Download and write a standard Raspbian Stretch Lite SD card. Use [this version](https://slack-files.com/T0RAWRCGY-FE235KURL-091393bb8e) so everyone is using the same version. We recomend using [etcher](https://www.balena.io/etcher/) to flash the card
+* Download and write a standard Raspbian Buster Lite SD card. Use [this version](https://slack-files.com/T0RAWRCGY-FQG7WTSBH-eb9549ed22) so everyone is using the same version. We recomend using [etcher](https://www.balena.io/etcher/) to flash the card
 * Download the latest release of this repository into the /boot partition. Unzip and move all the files into the /boot folder (replace any files that conflict so the repository's version overwrites the original version). Delete the zip file and now empty folder.
 * Remove the SD card and put it into your Pi.
 

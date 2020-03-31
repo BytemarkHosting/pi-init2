@@ -1,4 +1,4 @@
-PRI-Setup (WIP)
+RPI-Setup (WIP)
 ========
 
 Purpose

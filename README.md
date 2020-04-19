@@ -3,13 +3,13 @@ RPI-Setup (WIP)
 
 Purpose
 -------
-This repository allows you to set up a Raspberry Pi solely by writing to the /boot partition (i.e.  the one you can write from most computers!) in a repeatable manner. This allows you to distribute a small .zip file to set up a Raspberry Pi to do anything.  You tell the user to unzip it over the top of the Pi's boot partition - the system can set itself up perfectly on the first boot.
+This repository allows you to set up a Raspberry Pi solely by writing to the /boot partition (i.e.  the one you can write from most computers!) in a repeatable manner. This allows you to distribute a small .zip file to set up a Raspberry Pi to do anything.  You tell the user to unzip it over the top of the Pi's boot partition - the system can set itself up perfectly on the first boot, and once everything is ready to go reboot.
 
-This is done using [pi-init2](src/projects.bytemark.co.uk/pi-init2/init.go). You can read more about how it works behind the scenes [here](https://blog.bytemark.co.uk/2016/01/04/setting-up-a-raspberry-pi-perfectly-on-the-first-boot)
+This is done using [pi-init2](src/projects.bytemark.co.uk/pi-init2/init.go). You can read more about how it works behind the scenes [here](https://blog.bytemark.co.uk/2016/01/04/setting-up-a-raspberry-pi-perfectly-on-the-first-boot). Additionaly pi-init2 various system files are symlinked back to the /boot, allowing you to reliably edit those "user-serviceable" files from the computer in future. 
 
-Additionaly pi-init2 various system files are symlinked back to the /boot, allowing you to reliably edit those "user-serviceable" files from the computer in future. 
+Another thing this repository will do is automated setting up the SD card in read-only mode as described [here](https://learn.adafruit.com/read-only-raspberry-pi). This is especially important for cases where the pi can get its power cut off without propper shutdown (for example in robotics) as it will prevent SD card corruption. This adds an `(ro)` (read-only) indicator to the bash prompt indicating that the file system can't be changed. To make changes you can use the `rw` and `ro` bash commands to transision between read-write and read-only modes respectivaly. A number of directories (including `/tmp`, `/var/log` and `/var/tmp`) are remapped to a [tmpfs](https://en.wikipedia.org/wiki/Tmpfs) to ensure programs that expect them to be writable contiune to work.
 
-Actually doing it
+Actually setting up the Pi
 -------------
 From your desktop / laptop:
 
@@ -19,7 +19,7 @@ From your desktop / laptop:
 
 The Raspberry Pi should now boot and set everything up for development. 
 
-Getting internet access
+Getting internet access (at Stanford)
 -------------
 This script will make so the RPi automatically wants to connect the Stanford network. Initially it won't be able to do that as it is not yet authenticated to do it. To set that up:
 
@@ -34,29 +34,32 @@ This script will make so the RPi automatically wants to connect the Stanford net
    - `sudo reboot` on the Pi
    - After it's done rebooting, type `ping www.google.com` and make sure you are receiving packets over the network
 
+Getting internet access (elsewhere)
+-------------
+To connect to a differnt Wifi network edit `/etc/wpa_supplicant/wpa_supplicant.conf` as documented [here](https://linux.die.net/man/5/wpa_supplicant.conf) and reboot. Thanks to pi-init2 magic that file can be edited before the pi is ever turned on from `/boot/appliance/etc/wpa_supplicant/wpa_supplicant.conf`
+
 Getting started with the Pi
 -------------
-- Configure your computer to access the Rover network:
+- Configure your computer to access the robot network:
 	- Go to your network settings for the interface you wish to use (ethernet/wifi)
 	- Change your Configure IPv4: Manually
-	- Change your IP Address: 10.0.0.X (see the [CS Comms System](https://docs.google.com/spreadsheets/d/1pqduUwYa1_sWiObJDrvCCz4Al3pl588ytE4u-Dwa6Pw/edit?usp=sharing) document for what X to use)
+	- Change your IP Address to something in range 10.0.0.X (If you ar part of Stanford Student Robotics pick something that doesn't colide with other systems from this [document](https://docs.google.com/spreadsheets/d/1pqduUwYa1_sWiObJDrvCCz4Al3pl588ytE4u-Dwa6Pw/edit?usp=sharing))
 	- Change your Subnet Mask: 255.255.255.0
 	- Leave the Router blank
-	- After disconnecting from the Rover network remeber to return those settings to what they orignially were, otherwise your internet on that interface won't work
+	- After disconnecting from the robot network remember to return those settings to what they orignially were, otherwise your internet on that interface won't work
 - Ssh into the pi using `ssh pi@10.0.0.10` from your computer
 - Type `rw` to enter read-write mode. Confirm that the terminal prompt ends with `(rw)` instead of `(ro)`
 - Run `sudo ./install_packages.sh` to install packages
 	- If the IP is still 10.0.0.10 you will be prompted to change it
 	- If the hostname is still raspberry you will be prompted to change it
-	- You will be asked to enter the current time and date. This is needed so that certificates don't get marked as expired
-- Once you have done this you can ssh into the pi using the [rover command](https://github.com/stanfordroboticsclub/UDPComms). by typing `rover connect hostname`
+	- You will be asked to enter the current time and date. This is needed so that certificates don't get marked as expired. There is a `time_sync.sh` script that updates the current time from google
 
 What this repo does
 -------------
-- Enables ssh (only on ethernet)
-- Sets the Pi to connect to the rover network (10.0.0.X) over ethernet)
+- Enables ssh. Because the password is kept unchanged (raspberry) ssh is only enabled on the ethernet interface. Comment out the ListenAddress lines from `/boot/appliance/etc/ssh/sshd_config` to enable it on all interfaces.
+- Sets the Pi to connect to the robot network (10.0.0.X) over ethernet
 - Expands the SD card file system
-- Sets the file system up as read only
+- Sets the file system up as read-only
 - Prepares to connect to Stanford WiFi (see above for details)
 - Gives the script to install tools and repos needed for development
 

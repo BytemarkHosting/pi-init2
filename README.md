@@ -9,7 +9,7 @@ This is done using [pi-init2](src/projects.bytemark.co.uk/pi-init2/init.go). You
 
 Another thing this repository will do is automated setting up the SD card in read-only mode as described [here](https://learn.adafruit.com/read-only-raspberry-pi). This is especially important for cases where the pi can get its power cut off without propper shutdown (for example in robotics) as it will prevent SD card corruption. This adds an `(ro)` (read-only) indicator to the bash prompt indicating that the file system can't be changed. To make changes you can use the `rw` and `ro` bash commands to transision between read-write and read-only modes respectivaly. A number of directories (including `/tmp`, `/var/log` and `/var/tmp`) are remapped to a [tmpfs](https://en.wikipedia.org/wiki/Tmpfs) to ensure programs that expect them to be writable contiune to work.
 
-Actually setting up the Pi
+Setting up the SD card for the PI
 -------------
 From your desktop / laptop:
 
@@ -19,7 +19,7 @@ From your desktop / laptop:
 
 The Raspberry Pi should now boot and set everything up for development. 
 
-Getting internet access (at Stanford)
+Getting internet access at Stanford
 -------------
 This script will make so the RPi automatically wants to connect the Stanford network. Initially it won't be able to do that as it is not yet authenticated to do it. To set that up:
 
@@ -34,9 +34,21 @@ This script will make so the RPi automatically wants to connect the Stanford net
    - `sudo reboot` on the Pi
    - After it's done rebooting, type `ping www.google.com` and make sure you are receiving packets over the network
 
-Getting internet access (elsewhere)
+Getting internet access elsewhere
 -------------
-To connect to a differnt Wifi network edit `/etc/wpa_supplicant/wpa_supplicant.conf` as documented [here](https://linux.die.net/man/5/wpa_supplicant.conf) and reboot. Thanks to pi-init2 magic that file can be edited before the pi is ever turned on from `/boot/appliance/etc/wpa_supplicant/wpa_supplicant.conf`
+There are two methods for getting internet access elsewhere: using the raspi-config tool on the Pi or changing the wpa_supplicant file in the SD card file system. Using the raspi-config tool is simpler and recommended for beginners, but the benefits of modifying the wpa_supplicant file is that you can set the proper internet settings before starting up the Pi, which may help in scenarios where you'd like to do as little setup on the Pi as possible. 
+
+1. Raspi-config method
+	
+	Once SSH'd into the Pi, run:
+	```bash
+	sudo raspi-config
+	```
+	Then go to Network Options and follow the prompts to connect to Wifi.
+2. Wpa_supplicant method
+	
+	Edit `/etc/wpa_supplicant/wpa_supplicant.conf` as documented [here](https://linux.die.net/man/5/wpa_supplicant.conf) and reboot. Thanks to pi-init2 magic that file can be edited before the pi is ever turned on from `/boot/appliance/etc/wpa_supplicant/wpa_supplicant.conf`
+
 
 Getting started with the Pi
 -------------
